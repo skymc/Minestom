@@ -31,6 +31,9 @@ jobs:
         maven-local-ignore-paths: |
           net/minestom/
     - name: Build Minestom
-      run: ./gradlew classes testClasses
-    - name: Run Minestom tests
-      run: ./gradlew test
+      run: ./gradlew build
+    - name: capture build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: Artifacts
+        path: build/libs/
