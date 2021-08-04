@@ -5,6 +5,7 @@ plugins {
     id 'maven-publish'
     id 'org.jetbrains.kotlin.jvm' version '1.5.0'
     id 'checkstyle'
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
 }
 
 group 'net.minestom.server'
@@ -108,28 +109,28 @@ dependencies {
     testCompileOnly "org.mockito:mockito-core:2.28.2"
 
     // Netty
-    api 'io.netty:netty-handler:4.1.65.Final'
-    api 'io.netty:netty-codec:4.1.65.Final'
-    api 'io.netty:netty-transport-native-epoll:4.1.65.Final:linux-x86_64'
-    api 'io.netty:netty-transport-native-kqueue:4.1.65.Final:osx-x86_64'
+    implementation 'io.netty:netty-handler:4.1.65.Final'
+    implementation 'io.netty:netty-codec:4.1.65.Final'
+    implementation 'io.netty:netty-transport-native-epoll:4.1.65.Final:linux-x86_64'
+    implementation 'io.netty:netty-transport-native-kqueue:4.1.65.Final:osx-x86_64'
 
     // https://mvnrepository.com/artifact/it.unimi.dsi/fastutil
-    api 'it.unimi.dsi:fastutil:8.5.4'
+    implementation 'it.unimi.dsi:fastutil:8.5.4'
 
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
-    api 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.google.code.gson:gson:2.8.6'
 
     // Noise library for terrain generation
     // https://jitpack.io/#Articdive/Jnoise
-    api 'com.github.Articdive:Jnoise:2.1.0'
+    implementation 'com.github.Articdive:Jnoise:2.1.0'
 
     // https://mvnrepository.com/artifact/org.rocksdb/rocksdbjni
-    api 'org.rocksdb:rocksdbjni:6.16.4'
+    implementation 'org.rocksdb:rocksdbjni:6.16.4'
 
     // Logging
-    api 'org.apache.logging.log4j:log4j-core:2.14.0'
+    implementation 'org.apache.logging.log4j:log4j-core:2.14.0'
     // SLF4J is the base logger for most libraries, therefore we can hook it into log4j2.
-    api 'org.apache.logging.log4j:log4j-slf4j-impl:2.14.0'
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.14.0'
 
     // https://mvnrepository.com/artifact/org.jline/jline
     implementation group: 'org.jline', name: 'jline', version: '3.20.0'
@@ -141,53 +142,57 @@ dependencies {
     implementation 'com.github.ben-manes.caffeine:caffeine:3.0.2'
 
     // Guava 21.0+ required for Mixin
-    api 'com.google.guava:guava:30.1-jre'
+    implementation 'com.google.guava:guava:30.1-jre'
 
     // Code modification
-    api "org.ow2.asm:asm:${asmVersion}"
-    api "org.ow2.asm:asm-tree:${asmVersion}"
-    api "org.ow2.asm:asm-analysis:${asmVersion}"
-    api "org.ow2.asm:asm-util:${asmVersion}"
-    api "org.ow2.asm:asm-commons:${asmVersion}"
-    api "org.spongepowered:mixin:${mixinVersion}"
+    implementation "org.ow2.asm:asm:${asmVersion}"
+    implementation "org.ow2.asm:asm-tree:${asmVersion}"
+    implementation "org.ow2.asm:asm-analysis:${asmVersion}"
+    implementation "org.ow2.asm:asm-util:${asmVersion}"
+    implementation "org.ow2.asm:asm-commons:${asmVersion}"
+    implementation "org.spongepowered:mixin:${mixinVersion}"
 
     // Path finding
-    api 'com.github.MadMartian:hydrazine-path-finding:1.6.0'
+    implementation 'com.github.MadMartian:hydrazine-path-finding:1.6.0'
 
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${project.kotlinVersion}"
-    api "org.jetbrains.kotlin:kotlin-reflect:${project.kotlinVersion}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${project.kotlinVersion}"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:${project.kotlinVersion}"
 
     // NBT parsing/manipulation/saving
-    api("com.github.jglrxavpok:Hephaistos:${project.hephaistosVersion}")
-    api("com.github.jglrxavpok:Hephaistos:${project.hephaistosVersion}:gson")
-    api("com.github.jglrxavpok:Hephaistos:${project.hephaistosVersion}") {
+    implementation("com.github.jglrxavpok:Hephaistos:${project.hephaistosVersion}")
+    implementation("com.github.jglrxavpok:Hephaistos:${project.hephaistosVersion}:gson")
+    implementation("com.github.jglrxavpok:Hephaistos:${project.hephaistosVersion}") {
         capabilities {
             requireCapability("org.jglrxavpok.nbt:Hephaistos-gson")
         }
     }
 
-    api "com.github.Minestom:DependencyGetter:v1.0.1"
+    implementation "com.github.Minestom:DependencyGetter:v1.0.1"
 
     // Adventure, for user-interface
-    api "net.kyori:adventure-api:$adventureVersion"
-    api "net.kyori:adventure-text-serializer-gson:$adventureVersion"
-    api "net.kyori:adventure-text-serializer-plain:$adventureVersion"
-    api "net.kyori:adventure-text-serializer-legacy:$adventureVersion"
+    implementation "net.kyori:adventure-api:$adventureVersion"
+    implementation "net.kyori:adventure-text-serializer-gson:$adventureVersion"
+    implementation "net.kyori:adventure-text-serializer-plain:$adventureVersion"
+    implementation "net.kyori:adventure-text-serializer-legacy:$adventureVersion"
 
     // LWJGL, for map rendering
-    lwjglApi platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
+    implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
 
-    lwjglApi "org.lwjgl:lwjgl"
-    lwjglApi "org.lwjgl:lwjgl-egl"
-    lwjglApi "org.lwjgl:lwjgl-opengl"
-    lwjglApi "org.lwjgl:lwjgl-opengles"
-    lwjglApi "org.lwjgl:lwjgl-glfw"
-    lwjglApi "org.lwjgl:lwjgl-glfw"
-    lwjglApi 'org.joml:joml:1.9.25'
-    lwjglRuntimeOnly "org.lwjgl:lwjgl::$lwjglNatives"
-    lwjglRuntimeOnly "org.lwjgl:lwjgl-opengl::$lwjglNatives"
-    lwjglRuntimeOnly "org.lwjgl:lwjgl-opengles::$lwjglNatives"
-    lwjglRuntimeOnly "org.lwjgl:lwjgl-glfw::$lwjglNatives"
+    implementation "org.lwjgl:lwjgl"
+    implementation "org.lwjgl:lwjgl-egl"
+    implementation "org.lwjgl:lwjgl-opengl"
+    implementation "org.lwjgl:lwjgl-opengles"
+    implementation "org.lwjgl:lwjgl-glfw"
+    implementation "org.lwjgl:lwjgl-glfw"
+    implementation 'org.joml:joml:1.9.25'
+    implementation "org.lwjgl:lwjgl::$lwjglNatives"
+    implementation "org.lwjgl:lwjgl-opengl::$lwjglNatives"
+    implementation "org.lwjgl:lwjgl-opengles::$lwjglNatives"
+    implementation "org.lwjgl:lwjgl-glfw::$lwjglNatives"
+}
+
+shadowJar {
+    classifier('all')
 }
 
 configurations.all {
