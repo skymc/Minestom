@@ -31,7 +31,7 @@ jobs:
         maven-local-ignore-paths: |
           net/minestom/
     - name: Build Minestom
-      run: ./gradlew build
+      run: ./gradlew shadowJar
     - name: capture build artifacts
       uses: actions/upload-artifact@v2
       with:
